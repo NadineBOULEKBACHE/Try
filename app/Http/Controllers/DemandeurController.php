@@ -12,7 +12,7 @@ class DemandeurController extends Controller
      */
     public function index()
     {
-        return view('demandeur.starter');
+        return view('demandeur.demandeur');
     }
 
     /**
