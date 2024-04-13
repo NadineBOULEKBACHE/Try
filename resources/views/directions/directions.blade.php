@@ -78,7 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Liste des directions</h1>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default" style="float: right;">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default" style="float: right;">
                 Ajouter direction
               </button>
             </div><!-- /.col -->

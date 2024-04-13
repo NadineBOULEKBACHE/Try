@@ -91,6 +91,15 @@
             </a>
           </li>
 
+          <li class="nav-header">DEPARTEMENTS</li>
+
+          <li class="nav-item">
+            <a href="departements" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Liste Departements</p>
+            </a>
+          </li>
+
 
 
 
