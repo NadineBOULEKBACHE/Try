@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('colones', function (Blueprint $table) {
             $table->id();
-            $table->string('Colone_libelle', 999);
-            $table->unsignedBigInteger('rayons_id');
-            $table->foreign('rayons_id')->references('id')->on('rayons')->onDelete('cascade');
+            $table->string('name', 999);
+            $table->unsignedBigInteger('rayon_id');
+            $table->foreign('rayon_id')->references('id')->on('rayons')->onDelete('cascade');
             $table->timestamps();
         });
     }

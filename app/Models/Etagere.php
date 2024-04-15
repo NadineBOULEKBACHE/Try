@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Etagere extends Model
 {
     protected $fillable = [
-        'Etagere_libelle',
-        'rayons_id',
-        'colones_id',
+        'name',
+        'rayon_id',
+        'colone_id',
+        'capacity',
        
     ];
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rayons', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle',20);
+            $table->string('name',20);
             $table->timestamps();
         });
     }

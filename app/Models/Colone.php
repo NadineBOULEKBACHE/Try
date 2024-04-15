@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Colone extends Model
 {
     protected $fillable = [
-        'Colone_libelle',
-        'rayons_id',
+        'name',
+        'rayon_id',
        
     ];
 
     public function rayon(): BelongsTo
     {
-        return $this->belongsTo(Rayon::class, 'rayons_id');
+        return $this->belongsTo(Rayon::class, 'rayon_id');
     }
 }

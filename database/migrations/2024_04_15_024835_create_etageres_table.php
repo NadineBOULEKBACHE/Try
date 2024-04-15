@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('etageres', function (Blueprint $table) {
             $table->id();
-            $table->string('Etagere_libelle', 999);
-            $table->unsignedBigInteger('rayons_id');
-            $table->unsignedBigInteger('colones_id');
-            $table->foreign('rayons_id')->references('id')->on('rayons')->onDelete('cascade');
-            $table->foreign('colones_id')->references('id')->on('colones')->onDelete('cascade');
+            $table->string('name', 20);
+            $table->integer('capacity');
+            $table->unsignedBigInteger('rayon_id');
+            $table->unsignedBigInteger('colone_id');
+            $table->foreign('rayon_id')->references('id')->on('rayons')->onDelete('cascade');
+            $table->foreign('colone_id')->references('id')->on('colones')->onDelete('cascade');
             $table->timestamps();
         });
     }

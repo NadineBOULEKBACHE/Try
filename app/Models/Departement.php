@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Departement extends Model
 {
     protected $fillable = [
-        'Depart_name',
+        'name',
         'directions_id',
        
     ];
