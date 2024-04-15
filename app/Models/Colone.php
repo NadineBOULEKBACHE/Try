@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-class departements extends Model
+class Colone extends Model
 {
     protected $fillable = [
-        'Depart_name',
-        'directions_id',
+        'Colone_libelle',
+        'rayons_id',
        
     ];
 
-    public function direction(): BelongsTo
+    public function rayon(): BelongsTo
     {
-        return $this->belongsTo(directions::class, 'directions_id');
+        return $this->belongsTo(Rayon::class, 'rayons_id');
     }
 }

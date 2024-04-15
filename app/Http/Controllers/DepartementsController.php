@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\departements;
-use App\Models\directions;
+use App\Models\Departement;
+use App\Models\Direction;
 use Illuminate\Http\Request;
 
 class DepartementsController extends Controller
@@ -13,9 +13,13 @@ class DepartementsController extends Controller
      */
     public function index()
     {
-        $directions=directions::all();
-        $departements=departements::all();
+
+        $directions=Direction::all();
+        $departements=Departement::all();
+        // dd($directions);
         return view('departements.departements',compact('directions','departements'));
+        
+
     }
 
     /**
@@ -31,7 +35,7 @@ class DepartementsController extends Controller
      */
     public function store(Request $request)
     {
-        departements::create([
+        Departement::create([
             'Depart_name' => $request->Depart_name,
             'directions_id' => $request->directions_id,
         ]);
@@ -42,7 +46,7 @@ class DepartementsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(departements $departements)
+    public function show(Departement $departements)
     {
         //
     }
@@ -50,24 +54,38 @@ class DepartementsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(departements $departements)
+    public function edit(Departement $departements)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, departements $departements)
+    public function update(Request $request,Departement $departements)
     {
-        //
+        $id = Direction::where('nom', $request->nom)->first()->id;
+
+        $Departements = Departement::findOrFail($request->pro_id);
+ 
+        $Departements->update([
+        'Depart_name' => $request->Depart_name,
+        'directions_id' => $id,
+        ]);
+ 
+        session()->flash('Edit', 'Modifications département faite avec succès');
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(departements $departements)
+    public function destroy(Request $request)
     {
-        //
+         $Departements = Departement::findOrFail($request->pro_id);
+         $Departements->delete();
+         session()->flash('delete', 'Le département a été supprimé avec succès');
+         return back();
     }
+    
 }

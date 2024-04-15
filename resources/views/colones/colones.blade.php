@@ -1,6 +1,6 @@
 @extends('welcome')
 @section('title')
-Liste des departements
+Liste des Colones
 @stop
 
 <!DOCTYPE html>
@@ -44,25 +44,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     @endif
 
-    @if (session()->has('Edit'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-left: 18.7%; margin-top:0.2%;">
-      <strong>{{ session()->get('Edit') }}</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    @endif
-
-    @if (session()->has('delete'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-left: 18.7%; margin-top:0.2%;">
-      <strong>{{ session()->get('delete') }}</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    @endif
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -70,9 +51,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Liste des departements</h1>
+              <h1 class="m-0">Liste des Colones</h1>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float: right;">
-                Ajouter departement
+                Ajouter Colone
               </button>
             </div><!-- /.col -->
             <div class="card-body">
@@ -80,27 +61,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Nom département</th>
-                    <th>Nom direction</th>
+                    <th>Libelle Colone</th>
+                    <th>Libelle rayon</th>
                     <th></th>
                   </tr>
                 </thead>
 
                 <tbody>
                   <?php $i = 0; ?>
-                  @foreach($departements as $Departement)
+                  @foreach($colones as $Colone)
                   <?php $i++; ?>
                   <tr>
                     <td>{{$i}}</td>
-                    <td>{{$Departement->Depart_name}}</td>
-                    <td>{{$Departement->direction->nom}}</td>
+                    <td>{{$Colone->Colone_libelle}}</td>
+                    <td>{{$Colone->rayon->libelle}}</td>
                     <td>
 
-                      <button class="modal-effect btn btn-sm btn-info" data-name="{{ $Departement->Depart_name  }}" data-pro_id="{{ $Departement->id }}" data-nom="{{ $Departement->direction->nom  }}" data-toggle="modal" data-target="#exampleModal1">modifier</button>
+                      <button class="modal-effect btn btn-sm btn-info" data-libelle="{{ $Colone->Colone_libelle }}" data-pro_id="{{ $Colone->id }}" data-section_libelle="{{ $Colone->rayon->Colone_libelle }}" data-target="#edit_Product">Modifier</button>
 
 
 
-                      <button class="modal-effect btn btn-sm btn-danger " data-pro_id="{{ $Departement->id }}" data-name="{{ $Departement->Depart_name }}" data-toggle="modal" data-target="#modaldemo5">Supprimer</button>
+                      <button class="modal-effect btn btn-sm btn-danger " data-pro_id="{{ $Colone->id }}" data-product_libelle="{{ $Colone->Colone_libelle }}" data-toggle="modal" data-target="#modaldemo9">Supprimer</button>
 
                     </td>
                   </tr>
@@ -120,24 +101,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ajout département</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ajout colone</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form action="{{ route('departements.store') }}" method="post">
+              <form action="{{ route('colones.store') }}" method="post">
                 {{ csrf_field() }}
                 <div class="modal-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Nom département</label>
-                    <input type="text" class="form-control" id="Depart_name" name="Depart_name" required>
+                    <label for="exampleInputEmail1">Libelle colone</label>
+                    <input type="text" class="form-control" id="Colone_libelle" name="Colone_libelle" required>
                   </div>
 
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Direction</label>
-                  <select name="directions_id" id="directions_id" class="form-control" required>
-                    <option value="" selected disabled> -- sélectionner direction --</option>
-                    @foreach ($directions as $direction)
-                    <option value="{{ $direction->id }}">{{ $direction->nom }}</option>
+                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Rayon</label>
+                  <select name="rayons_id" id="rayons_id" class="form-control" required>
+                    <option value="" selected disabled> -- sélectionner rayon --</option>
+                    @foreach ($rayons as $rayons)
+                    <option value="{{ $rayons->id }}">{{ $rayons->libelle }}</option>
                     @endforeach
                   </select>
 
@@ -153,83 +134,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
 
         <!-- edit -->
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="edit_Product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modifier Département</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modifier rayon</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form action='departements/update' method="post">
+              <form action='/update' method="post">
                 {{ method_field('patch') }}
                 {{ csrf_field() }}
                 <div class="modal-body">
 
                   <div class="form-group">
-                    <label for="title">Département </label>
+                    <label for="title">Libelle colone:</label>
+
                     <input type="hidden" class="form-control" name="pro_id" id="pro_id" value="">
-                    <input type="text" class="form-control" name="Depart_name" id="Depart_name">
+
+                    <input type="text" class="form-control" name="Colone_libelle" id="Colone_libelle">
                   </div>
 
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Direction</label>
-                  <select name="nom" id="nom" class="custom-select my-1 mr-sm-2" required>
-                    @foreach ($directions as $direction)
-                    <option>{{ $direction->nom }}</option>
-                    @endforeach
-
-                  </select>
-
 
                 </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Modifier</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                </div>
-              </form>
+
+
             </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Modifier</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+            </form>
           </div>
         </div>
-
-        <!-- delete -->
-        <div class="modal fade" id="modaldemo5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Suppression département</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <form action="departements/destroy" method="post">
-                {{ method_field('delete') }}
-                {{ csrf_field() }}
-                <div class="modal-body">
-                  <p>Etes-vous sûr de vouloir supprimer ce département ?
-                  </p><br>
-                  <input type="hidden" name="pro_id" id="pro_id" value="">
-                  <input class="form-control" name="Depart_name" id="Depart_name" type="text" readonly>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                  <button type="submit" class="btn btn-danger">Confirmer</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+      </div>
 
 
-
-
-
-
-
-
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
@@ -289,29 +233,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         "responsive": true,
       });
     });
-  </script>
-  <script>
-    $('#exampleModal1').on('show.bs.modal', function(event) {
-      var button = $(event.relatedTarget)
-      var Depart_name = button.data('name')
-      var nom = button.data('nom')
-      var pro_id = button.data('pro_id')
-      var modal = $(this)
-      modal.find('.modal-body #Depart_name').val(Depart_name);
-      modal.find('.modal-body #nom').val(nom);
-      modal.find('.modal-body #pro_id').val(pro_id);
-    })
-
-
-    $('#modaldemo5').on('show.bs.modal', function(event) {
-      var button = $(event.relatedTarget)
-      var pro_id = button.data('pro_id')
-      var Depart_name = button.data('name')
-      var modal = $(this)
-
-      modal.find('.modal-body #pro_id').val(pro_id);
-      modal.find('.modal-body #Depart_name').val(Depart_name);
-    })
   </script>
 </body>
 

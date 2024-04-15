@@ -62,25 +62,65 @@
 
 
 
-          <li class="nav-header">DEMANDEURS</li>
+          <li class="nav-header">Emplacement</li>
 
           <li class="nav-item">
-            <a href="demandeur" class="nav-link">
+            <a href="rayons" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Liste Demandeurs</p>
+              <p>Liste Rayons</p>
             </a>
           </li>
-          </li>
-          </li>
-          <li class="nav-header">ARCHIVISTES</li>
 
           <li class="nav-item">
-            <a href="./index.html" class="nav-link">
+            <a href="colones" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Liste Archivistes</p>
+              <p>Liste Colones</p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="etageres" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Liste Etagères</p>
+            </a>
           </li>
+
+          <li class="nav-header">Boites</li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Liste Boites</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Liste Boites Empruntées</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Liste Boites En attente de destruction</p>
+            </a>
+          </li>
+
+          <li class="nav-header">Demandes</li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Listes demandes versement</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Listes demandes emprunts</p>
+            </a>
+          </li>
+
 
           <li class="nav-header">DIRECTIONS</li>
 

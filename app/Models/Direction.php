@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
- 
 
-
-class demandeur extends Model
+class Direction extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nom',
+        'description',
+       
+    ];
 }
-
-?>

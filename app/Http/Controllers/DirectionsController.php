@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\directions;
+use App\Models\Direction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +13,7 @@ class DirectionsController extends Controller
      */
     public function index()
     {
-        $directions=directions::all();
+        $directions=Direction::all();
         return view('directions.directions',compact('directions'));
     }
 
@@ -39,7 +39,7 @@ class DirectionsController extends Controller
             'description.required' => 'Veuillez saisir la description',
         ]);
                 
-            directions::create([
+            Direction::create([
                 'nom' => $request->nom,
                 'description' => $request->description,
                
@@ -53,7 +53,7 @@ class DirectionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(directions $directions)
+    public function show(Direction $directions)
     {
         //
     }
@@ -61,7 +61,7 @@ class DirectionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(directions $directions)
+    public function edit(Direction $directions)
     {
         //
     }
@@ -69,7 +69,7 @@ class DirectionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, directions $directions)
+    public function update(Request $request, Direction $directions)
     {
         $id = $request->id;
 
@@ -85,7 +85,7 @@ class DirectionsController extends Controller
 
         ]);
 
-        $directions = directions::find($id);
+        $directions = Direction::find($id);
         $directions->update([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -101,7 +101,7 @@ class DirectionsController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->id;
-        directions::find($id)->delete();
+        Direction::find($id)->delete();
         session()->flash('delete','La direction a été supprimée avec succès');
         return redirect('/directions');
     }
